@@ -1,0 +1,23 @@
+
+<% if @sales_moments.events.any? %>
+
+<div>
+      
+<div class="alert alert-info">
+<h3>Info</h3>
+Met deze webapplicatie kan u een kalender genereren in ICS formaat die in een kalenderapplicatie kan ingeladen worden (google calender, apple ical, ...)<br>
+<h3>ICS link</h3>
+Onderstaande links kunnen gebruikt worden als kalender-url in applicaties zoals Ical of Google Calendar.<br>
+<button onclick="copyToClipboard('#ics_formatted_url')">Kopieer naar clipboard</button>
+<br>
+<pre id="ics_formatted_url" class="alert alert-info"><%=h @ics_formatted_url %></pre>
+</div>
+
+
+
+<% @sales_moments.events.each do |event| %>
+<pre class="alert alert-warning"><%=event.summary%> : <%=event.dtstart.strftime("%A %d-%m-%Y")%>
+timeslot: <%=event.dtstart.strftime("%H:%M")%> - <%=event.dtend.strftime("%H:%M")%></pre>
+<% end %>
+
+<% end %>
